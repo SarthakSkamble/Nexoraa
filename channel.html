@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Channel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-details {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-details img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .profile-info h2 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .profile-info p {
+            font-size: 16px;
+            color: gray;
+        }
+
+        .edit-profile-btn {
+            padding: 10px 15px;
+            background-color: #606060;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .edit-profile-btn:hover {
+            background-color: #505050;
+        }
+
+        /* Add Video Button */
+        .add-video-btn {
+            padding: 10px 20px;
+            background-color: #cc0000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .add-video-btn:hover {
+            background-color: #b80000;
+        }
+
+        .video-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .video-item {
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-item img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .video-item h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .video-item p {
+            font-size: 14px;
+            color: gray;
+        }
+
+        /* Modal for editing profile */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            width: 400px;
+            border-radius: 10px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+        }
+
+        .modal-header button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-body input, .modal-body textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .save-btn {
+            padding: 10px 20px;
+            background-color: #00cc00;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .save-btn:hover {
+            background-color: #00b200;
+        }
+
+        .cancel-btn {
+            padding: 10px 20px;
+            background-color: #ccc;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .cancel-btn:hover {
+            background-color: #bbb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <div class="profile-details">
+                <img src="profile-icon.png" alt="Profile Picture" id="profile-pic">
+                <div class="profile-info">
+                    <h2 id="profile-name">Your Channel Name</h2>
+                    <p id="profile-description">This is your channel description.</p>
+                </div>
+            </div>
+            <button class="edit-profile-btn" id="edit-profile-btn">Edit Profile</button>
+        </div>
+
+        <!-- Add Video Button -->
+        <button class="add-video-btn">Add Video</button>
+
+        <!-- Video Gallery -->
+        <div class="video-gallery">
+            <div class="video-item">
+                <img src="video-thumbnail1.jpg" alt="Video Thumbnail">
+                <h4>Video Title 1</h4>
+                <p>100 views • 1 week ago</p>
+            </div>
+            <div class="video-item">
+                <img src="video-thumbnail2.jpg" alt="Video Thumbnail">
+                <h4>Video Title 2</h4>
+                <p>50 views • 2 weeks ago</p>
+            </div>
+            <!-- Add more video items here -->
+        </div>
+    </div>
+
+    <!-- Modal for Editing Profile -->
+    <div class="modal" id="edit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Profile</h3>
+                <button id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <label for="edit-pic">Change Profile Picture:</label>
+                <input type="file" id="edit-pic">
+                <label for="edit-name">Channel Name:</label>
+                <input type="text" id="edit-name" value="Your Channel Name">
+                <label for="edit-description">Channel Description:</label>
+                <textarea id="edit-description" rows="4">This is your channel description.</textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="save-btn" id="save-profile">Save</button>
+                <button class="cancel-btn" id="cancel-edit">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get modal elements
+        const modal = document.getElementById('edit-modal');
+        const editProfileBtn = document.getElementById('edit-profile-btn');
+        const closeModalBtn = document.getElementById('close-modal');
+        const cancelEditBtn = document.getElementById('cancel-edit');
+
+        // Open the modal
+        editProfileBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+
+        // Close the modal
+        closeModalBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        cancelEditBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Save profile changes
+        const saveProfileBtn = document.getElementById('save-profile');
+        const profilePic = document.getElementById('profile-pic');
+        const profileName = document.getElementById('profile-name');
+        const profileDescription = document.getElementById('profile-description');
+
+        saveProfileBtn.addEventListener('click', () => {
+            const newProfilePic = document.getElementById('edit-pic').files[0];
+            const newProfileName = document.getElementById('edit-name').value;
+            const newProfileDescription = document.getElementById('edit-description').value;
+
+            if (newProfilePic) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    profilePic.src = e.target.result;
+                };
+                reader.readAsDataURL(newProfilePic);
+            }
+
+            profileName.textContent = newProfileName;
+            profileDescription.textContent = newProfileDescription;
+
+            modal.style.display = 'none';
+        });
+
+        // Close the modal if clicked outside the modal content
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
