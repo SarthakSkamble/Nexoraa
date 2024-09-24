@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Clone</title>
+    <style>
+        /* Reset some default styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        /* Header styling */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #202020;
+            color: white;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            display: flex;
+        }
+
+        .search-bar input {
+            width: 300px;
+            padding: 5px;
+        }
+
+        .search-bar button {
+            padding: 6px;
+            background-color: #606060;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .profile-icon img {
+            width: 30px;
+            border-radius: 50%;
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            width: 200px;
+            background-color: #202020;
+            color: white;
+            padding-top: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 60px;
+            left: 0;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #383838;
+        }
+
+        /* Video grid styling */
+        .video-grid {
+            margin-left: 220px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .video-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .video-item h4 {
+            margin: 10px 0 5px;
+            font-size: 16px;
+        }
+
+        .video-item p {
+            color: gray;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">YouTube Clone</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search" id="search">
+            <button>Search</button>
+        </div>
+        <div class="profile-icon">
+            <img src="profile-icon.png" alt="Profile">
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li>Home</li>
+            <li>Trending</li>
+            <li>Subscriptions</li>
+            <li>Library</li>
+        </ul>
+    </div>
+
+    <!-- Video Grid -->
+    <div class="video-grid">
+        <!-- Example video thumbnails -->
+        <div class="video-item">
+            <img src="thumbnail1.jpg" alt="Video Thumbnail">
+            <h4>Video Title 1</h4>
+            <p>Channel Name</p>
+        </div>
+        <div class="video-item">
+            <img src="thumbnail2.jpg" alt="Video Thumbnail">
+            <h4>Video Title 2</h4>
+            <p>Channel Name</p>
+        </div>
+        <div class="video-item">
+            <img src="thumbnail3.jpg" alt="Video Thumbnail">
+            <h4>Video Title 3</h4>
+            <p>Channel Name</p>
+        </div>
+        <div class="video-item">
+            <img src="thumbnail4.jpg" alt="Video Thumbnail">
+            <h4>Video Title 4</h4>
+            <p>Channel Name</p>
+        </div>
+    </div>
+
+    <script>
+        // Example for search button functionality
+        document.querySelector('button').addEventListener('click', function() {
+            const searchValue = document.getElementById('search').value;
+            alert('You searched for: ' + searchValue);
+        });
+    </script>
+</body>
+</html>
